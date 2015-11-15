@@ -15,6 +15,7 @@ ENV TEAMSPEAK_URL http://dl.4players.de/ts/releases/3.0.11.3/teamspeak3-server_l
 VOLUME ["/teamspeak3"]
 
 ADD run.sh /run.sh
+RUN chmod 774 /run.sh
 
 # Download TS3 file and extract it into /opt.
 ADD ${TEAMSPEAK_URL} /opt/
@@ -26,7 +27,7 @@ RUN adduser --disabled-password --gecos "" teamspeak
 # Change permissions folder.
 RUN chown -R teamspeak:teamspeak /opt/teamspeak3-server_linux-amd64/
 RUN chown -R teamspeak:teamspeak /teamspeak3
-RUN chown teamspeak:teamspeak /run.sh
+
 
 USER teamspeak
 
